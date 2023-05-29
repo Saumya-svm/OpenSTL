@@ -32,7 +32,7 @@ def parse(file):
 
 def load_data(
         batch_size, val_batch_size,
-        data_root, num_workers):
+        data_root, num_workers,**kwargs):
 
     target = []
     for file in os.listdir('tcnn_data'):
@@ -64,7 +64,7 @@ def load_data(
     dataloader_test = torch.utils.data.DataLoader(
         test_set, batch_size=val_batch_size, shuffle=False, pin_memory=True, num_workers=num_workers)
 
-    return dataloader_train, None, dataloader_test, 0, 1
+    return dataloader_train, dataloader_test, dataloader_test
 
 if __name__ == '__main__':
     train, _, test,_,_ = load_data(32,32,'data/',8)

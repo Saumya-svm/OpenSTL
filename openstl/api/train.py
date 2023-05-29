@@ -127,7 +127,6 @@ class BaseExperiment(object):
         set_seed(seed)
 
         # prepare data
-        print('Hello ', self.config['dataname'])
         self._get_data()
         # build the method
         self._build_method()
@@ -197,7 +196,6 @@ class BaseExperiment(object):
 
     def _get_data(self):
         """Prepare datasets and dataloaders"""
-        print('dataname', self.config.dataname)
         self.train_loader, self.vali_loader, self.test_loader = \
             get_dataset(self.args.dataname, self.config)
         if self.vali_loader is None:
