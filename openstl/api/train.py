@@ -342,7 +342,7 @@ class BaseExperiment(object):
 
         self.call_hook('before_val_epoch')
         inputs, preds, trues = self.method.test_one_epoch(self, self.test_loader)
-        inputs, train_preds, train_trues = self.method.train_one_epoch(self, self.train_loader)
+        inputs, train_preds, train_trues = self.method.test_one_epoch(self, self.train_loader)
         self.call_hook('after_val_epoch')
 
         if 'weather' in self.args.dataname:
