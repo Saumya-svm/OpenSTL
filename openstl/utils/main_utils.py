@@ -145,6 +145,7 @@ def check_dir(path):
 
 
 def get_dataset(dataname, config):
+    print('dataname',dataname)
     from openstl.datasets import dataset_parameters
     from openstl.datasets import load_data
     config.update(dataset_parameters[dataname])

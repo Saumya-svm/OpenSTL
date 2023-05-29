@@ -43,6 +43,13 @@ dataset_parameters = {
         'aft_seq_length': 1,
         'total_length': 11
     },
+    'windpmf':{
+        'in_shape': [8, 1, 12, 16],
+        'pre_seq_length': 8,
+        'aft_seq_length': 1,
+        'total_length': 9,
+        'data_name': 'windpmf'
+    },
     **dict.fromkeys(['weather', 'weather_t2m_5_625'], {  # 2m_temperature
         'in_shape': [12, 1, 32, 64],
         'pre_seq_length': 12,
