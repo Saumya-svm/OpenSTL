@@ -342,6 +342,7 @@ class BaseExperiment(object):
 
         self.call_hook('before_val_epoch')
         inputs, preds, trues = self.method.test_one_epoch(self, self.test_loader)
+        inputs, train_preds, train_trues = self.method.train_one_epoch(self, self.train_loader)
         self.call_hook('after_val_epoch')
 
         if 'weather' in self.args.dataname:
@@ -350,6 +351,8 @@ class BaseExperiment(object):
             metric_list, spatial_norm = ['mse', 'mae', 'ssim', 'psnr'], False
         eval_res, eval_log = metric(preds, trues, self.test_loader.dataset.mean, self.test_loader.dataset.std,
                                     metrics=metric_list, spatial_norm=spatial_norm)
+        train_eval_res, train_eval_log = metric(train_preds, train_trues, self.train_loader.dataset.mean, self.train_loader.dataset.std,
+                                                metrics=metric_list, spatial_norm=spatial_norm)
         metrics = np.array([eval_res['mae'], eval_res['mse']])
 
         if self._rank == 0:
@@ -360,4 +363,4 @@ class BaseExperiment(object):
             for np_data in ['metrics', 'inputs', 'trues', 'preds']:
                 np.save(osp.join(folder_path, np_data + '.npy'), vars()[np_data])
 
-        return eval_res['mse']
+        return eval_res['mse'], train_eval_res['mse']

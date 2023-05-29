@@ -43,7 +43,8 @@ if __name__ == '__main__':
 
     if rank == 0:
         print('>'*35 + ' testing  ' + '<'*35)
-    mse = exp.test()
-
+    mse,train_mse = exp.test()
+    print('Test ', mse)
+    print('Train ', mse)
     if rank == 0 and has_nni:
         nni.report_final_result(mse)
