@@ -52,7 +52,7 @@ def load_data(
     y = np.array(y)
     y = y.reshape(X.shape[0], 1, 1,target.shape[1], target.shape[2])
 
-    train_size = int(X.shape[0]*0.8)
+    train_size = int(X.shape[0]*0.7)
     X_train, Y_train = X[:train_size], y[:train_size]
     X_test, Y_test = X[train_size:], y[train_size:]
 
