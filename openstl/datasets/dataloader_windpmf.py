@@ -21,7 +21,7 @@ class WindPMFDataset(Dataset):
         return data, labels
 
 def parse(file):
-    with open(f'tcnn_data/{file}') as f:
+    with open(f'data/tcnn_data/{file}') as f:
         x = []
         for i in range(12):
             x.append(f.readline().split())
@@ -35,7 +35,7 @@ def load_data(
         data_root, num_workers,**kwargs):
 
     target = []
-    for file in os.listdir('tcnn_data'):
+    for file in os.listdir('data/tcnn_data'):
         target.append(parse(file))
     target = np.array(target)
 
