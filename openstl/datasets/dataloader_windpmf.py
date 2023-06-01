@@ -36,7 +36,8 @@ def load_data(
 
     target = []
     for file in os.listdir('data/tcnn_data'):
-        target.append(parse(file))
+        if file[0] == 'f' and file[-1] == 't':
+            target.append(parse(file))
     target = np.array(target)
 
     # prepare input and target arrays
